@@ -30,6 +30,7 @@ fix_names <- function(dataset) {
   names = gsub("-mean", "Mean", names)
   names = gsub("-std", "Std", names)
   names = gsub("tBody", "TimeBody", names)
+  names <- gsub('[()-]', '', names) # Remove the parenthesis and dashes
   names = gsub("tGravity", "TimeGravity", names)
   names = gsub("fBody", "FFTBody", names)
   setnames(dataset, names)
@@ -38,7 +39,7 @@ fix_names <- function(dataset) {
 
 # This function will write the dataset to the appropriate file(s)
 write_tidy_dataset <- function(dataset) {
-  write.table(dataset, file="tidydata.csv", row.names = FALSE, quote = FALSE)
+  write.table(dataset, file="tidydata.csv", row.names = FALSE)
 }
 
 # This is the main function.  Once this file is opened in R, it can be executed 
